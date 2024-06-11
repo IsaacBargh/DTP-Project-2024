@@ -13,3 +13,9 @@ import app.models as models
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
+@app.route('/all_stars')
+def all_stars():
+    stars = models.Star.query.all()
+    return render_template('all_stars.html', stars=stars)
