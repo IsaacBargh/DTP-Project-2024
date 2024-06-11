@@ -1,1 +1,6 @@
-{{stars}}
+{% extends "layout.html" %}
+{% block content %}
+{%for star in stars%}
+<p>{{star}}</p>
+{%endfor%}
+{% endblock %}
