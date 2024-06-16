@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{constellation.name}}</h1>
+<p>{{constellation.description}}</p>
+<p>{{constellation.story}}</p>
+<img src="/static/images/{{ constellation.image }}"><br>
+{% endblock %}

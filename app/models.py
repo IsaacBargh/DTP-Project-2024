@@ -1,10 +1,28 @@
 from app.routes import db
 
 
+ConstellationMonth = db.Table('ConstellationMonth',
+                        db.Column('cid', db.Integer, db.ForeignKey('Constellation.id')),
+                        db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
+                        )
+
+
+PlanetMonth = db.Table('PlanetMonth',
+                        db.Column('pid', db.Integer, db.ForeignKey('Planet.id')),
+                        db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
+                        )
+
+
 class Month(db.Model):
     __tablename__ = "Month"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
+    constellations = db.relationship('Constellation',
+                               secondary='ConstellationMonth',
+                               back_populates='months')
+    planets = db.relationship('Planet',
+                               secondary='PlanetMonth',
+                               back_populates='months')
 
     def __repr__(self):
         return self.name
@@ -17,6 +35,9 @@ class Constellation(db.Model):
     description = db.Column(db.Text())
     story = db.Column(db.Text())
     image = db.Column(db.Text())
+    months = db.relationship('Month',
+                               secondary='ConstellationMonth',
+                               back_populates='constellations')
 
     def __repr__(self):
         return self.name
@@ -30,6 +51,9 @@ class Planet(db.Model):
     constellation = db.Column(db.Integer, db.ForeignKey("Constellation.id"))
     constellation_desc = db.relationship("Constellation", backref="Planet")
     image = db.Column(db.Text())
+    months = db.relationship('Month',
+                               secondary='PlanetMonth',
+                               back_populates='planets')
 
     def __repr__(self):
         return self.name

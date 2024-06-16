@@ -22,10 +22,22 @@ def all_months():
     return render_template('all_months.html', months=months)
 
 
+@app.route('/month/<int:id>')
+def month(id):
+    month = models.Month.query.filter_by(id=id).first()
+    return render_template('month.html', month=month)
+
+
 @app.route('/all_planets')
 def all_planets():
     planets = models.Planet.query.all()
     return render_template('all_planets.html', planets=planets)
+
+
+@app.route('/planet/<int:id>')
+def planet(id):
+    planet = models.Planet.query.filter_by(id=id).first()
+    return render_template('planet.html', planet=planet)
 
 
 @app.route('/all_stars')
@@ -34,7 +46,24 @@ def all_stars():
     return render_template('all_stars.html', stars=stars)
 
 
+@app.route('/star/<int:id>')
+def star(id):
+    star = models.Star.query.filter_by(id=id).first()
+    return render_template('star.html', star=star)
+
+
 @app.route('/all_constellations')
 def all_constellations():
     constellations = models.Constellation.query.all()
     return render_template('all_constellations.html', constellations=constellations)
+
+
+@app.route('/constellation/<int:id>')
+def constellation(id):
+    constellation = models.Constellation.query.filter_by(id=id).first()
+    return render_template('constellation.html', constellation=constellation)
+
+
+@app.errorhandler(404) 
+def not_found(e):
+    return render_template("404.html"), 404

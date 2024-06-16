@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 {%for star in stars%}
-<p>{{star}}</p>
+<a href='/star/{{star.id}}'>{{star.name}}</a>
 {%endfor%}
 {% endblock %}

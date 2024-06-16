@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{star.name}}</h1>
+<p>{{star.description}}</p>
+<h3>Constellation</h3>
+<p>{{star.constellation_desc.name}}</p>
+<img src="/static/images/{{ star.image }}"><br>
+{% endblock %}
