@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if person != 'none' %}
+        <h1>{{person}}</h1>
+        {% endif %}
 <p>Night Website</p>
+<p>{{message}}</p>
 {% endblock %}

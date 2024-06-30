@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Login</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.username.label }}
+        {{ form.username() }}
+    </div>
+    <div>
+        {{ form.password.label }}
+        {{ form.password() }}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+<p>Don't have an account? <a href="/create_user">Sign up</a></p>
+<p>{{person}}</p>
+{% endblock %}

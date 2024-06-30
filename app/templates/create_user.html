@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Sign up</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div>
+      {{ form.username.label }}
+      {{ form.username() }}
+  </div>
+  <div>
+      {{ form.password.label }}
+      {{ form.password() }}
+  </div>
+  <div>
+    {{ form.confirm_password.label }}
+    {{ form.confirm_password() }}
+</div>
+  <div>
+      {{ form.submit() }}
+  </div>
+</form>
+<a href="/login" id="backButton">Back</a>
+{% endblock %}
