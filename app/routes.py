@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, redirect, request, url_for, session, make_response, request, flash
+from flask import render_template, redirect, request, url_for, session, request, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -71,6 +71,7 @@ def all_constellations():
 def constellation(id):
     constellation = models.Constellation.query.filter_by(id=id).first()
     return render_template('constellation.html', constellation=constellation)
+
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():

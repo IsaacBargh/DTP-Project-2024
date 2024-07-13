@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 {%for planet in planets%}
-<a href='/planet/{{planet.id}}'>{{planet.name}}</a>
+<p>
+    <a href='/planet/{{planet.id}}'>{{planet.name}}</a>
+</p>
 {%endfor%}
 {% endblock %}
