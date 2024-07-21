@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>{{planet.name}}</h1>
+<img class="img" src="/static/images/{{ planet.image }}">
+<p>ORDER FROM THE SUN 🌞 {{planet.order}}</p>
 <p>{{planet.description}}</p>
+<p>On average {{planet.name}} is {{planet.distance}} from Earth</p>
 <h3>Constellation</h3>
 <p>{{planet.constellation_desc.name}}</p>
-<img class="img" src="/static/images/{{ planet.image }}"><br>
+<br>
 {% endblock %}

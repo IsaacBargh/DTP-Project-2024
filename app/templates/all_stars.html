@@ -1,6 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-{%for star in stars%}
-<a href='/star/{{star.id}}'>{{star.name}}</a>
-{%endfor%}
+<br><br>
+<div class="all_link_container">
+    {%for star in stars%}
+    <div>
+        <a href = "/star/{{star.id}}">
+            <img class="all_img" src="/static/images/{{ star.image }}">
+            <h3 class="all_name">
+            {{star.name}}
+            </h3>
+        </a>
+    </div>
+    {%endfor%}
+</div>
 {% endblock %}

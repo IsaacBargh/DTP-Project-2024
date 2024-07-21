@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-{%for constellation in constellations%}
-<a href='/constellation/{{constellation.id}}'>{{constellation.name}}</a>
-<br>
-{%endfor%}
+<br><br>
+<div class="all_link_container">
+    {%for constellation in constellations%}
+    <div>
+        <a href = "/constellation/{{constellation.id}}">
+            <img class="all_img" src="/static/images/{{ constellation.image }}">
+            <h3 class="all_name">
+            {{constellation.name}}
+            </h3>
+        </a>
+    </div>
+    {%endfor%}
+</div>
 {% endblock %}

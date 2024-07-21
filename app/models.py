@@ -52,6 +52,8 @@ class Planet(db.Model):
     constellation = db.Column(db.Integer, db.ForeignKey("Constellation.id"))
     constellation_desc = db.relationship("Constellation", backref="Planet")
     image = db.Column(db.Text())
+    order = db.Column(db.Integer)
+    distance = db.Column(db.Text())
     months = db.relationship('Month',
                                secondary='PlanetMonth',
                                back_populates='planets')

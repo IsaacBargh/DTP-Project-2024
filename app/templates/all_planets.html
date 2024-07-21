@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-{%for planet in planets%}
-<p>
-    <a href='/planet/{{planet.id}}'>{{planet.name}}</a>
-</p>
-{%endfor%}
+<br><br>
+<div class="all_link_container">
+    {%for planet in planets%}
+    <div>
+        <a href = "/planet/{{planet.id}}">
+            <img class="all_img" src="/static/images/{{ planet.image }}">
+            <h3 class="all_name">
+            {{planet.name}}
+            </h3>
+        </a>
+    </div>
+    {%endfor%}
+</div>
 {% endblock %}
