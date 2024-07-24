@@ -1,8 +1,21 @@
-body {
+html,body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #222;
     color: whitesmoke;
+    height: 100%;
 }
+
+main{
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+
+main:after {
+    content: "";
+    display: block;
+    height: 100px;
+}
+
 
 a {
     text-decoration: none; /* removes underline and other decorations for everything */
@@ -31,7 +44,7 @@ nav :hover {
 footer {
     color: rgb(235, 175, 60);
     text-align: center;
-    margin-top: 10%;
+    height: 100px;
 }
 
 .img {
@@ -98,6 +111,59 @@ hr {
     background-color: rgb(30, 80, 180);
 }
 
+/* login page */
+
+.account_div{
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.account_div h1{
+    color: rgb(235, 175, 60);
+    font-weight: 600;
+    font-size: 60px;
+    text-align: center;
+}
+
+.account_div input {
+    width: 100%;
+    background-color: lightgray;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .account_div input:focus {
+    background-color: gray;
+  }
+
+  .account_div input[type=submit]{
+    background-color:rgb(30, 80, 180);
+    color: white;
+    user-select: none;
+    border-radius:15px;
+    width:20%;
+    font-size: 100%;
+    transition: 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .account_div input[type=submit]:hover{
+    background-color:rgb(10, 40, 100);
+  }
+
+  .account_div a{
+    color:rgb(30, 80, 180);
+    text-decoration: underline;
+  } 
+
+  .account_div h3{
+    text-align: left;
+  } 
 
 /* 404 page */
 
@@ -126,7 +192,7 @@ hr {
     user-select: none;
     border-radius:15px;
     width:20%;
-    font-size: 200%;
+    font-size: 100%;
     transition: 0.2s;
     display: block;
     margin-left: auto;

@@ -1,23 +1,21 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h2>Sign up</h2>
-<form method="POST">
-  {{ form.hidden_tag() }}
-  <div>
-      {{ form.username.label }}
-      {{ form.username() }}
-  </div>
-  <div>
-      {{ form.password.label }}
-      {{ form.password() }}
-  </div>
-  <div>
-    {{ form.confirm_password.label }}
+<div class="account_div">
+  <h1>Sign up</h1>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <h3>{{ form.username.label }}</h3>
+    {{ form.username() }}
+
+    <h3>{{ form.password.label }}</h3>
+    {{ form.password() }}
+
+    <h3>{{ form.confirm_password.label }}</h3>
     {{ form.confirm_password() }}
+    <br><br>
+    {{ form.submit() }}
+  </form>
+  <p>Already have an existing account? <a href="/login">Login</a></p>
 </div>
-  <div>
-      {{ form.submit() }}
-  </div>
-</form>
-<a href="/login" id="backButton">Back</a>
 {% endblock %}
