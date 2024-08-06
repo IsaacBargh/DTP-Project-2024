@@ -7,6 +7,7 @@
     <title>Night Sky</title>
 </head>
 <body>
+    
     <nav>
         <a href="/">Home</a>
         <a href="/all_months">Months</a>
@@ -14,13 +15,21 @@
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
         <div class="right">
+            {% if person == None %}
             <a  href="/login">Login</a>
+            {% elif person != 'none' %}
             <a href="/clear_user">Logout</a>
+            {% else%}
+            <a  href="/login">Login</a>
+            {% endif %}
         </div>
     </nav>
     <hr>
     <main>
     {%block content%}{%endblock%}
+    {%if admin == 1%}
+    <p>Welcome admin</p>
+    {%endif%}
     </main>
     <footer>COPYRIGHT ©2024 Isaac Bargh &nbsp;&nbsp;&nbsp;CONTACT: 20292@burnside.school.nz</footer>
 </body>
