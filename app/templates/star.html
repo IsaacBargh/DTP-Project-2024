@@ -5,5 +5,12 @@
 <p>{{star.description}}</p>
 <h3>Constellation</h3>
 <p>{{star.constellation_desc.name}}</p>
+{%if admin == 1%}
+<form method="POST"
+                action="{{ url_for('delete_star', id=star.id) }}">
+            <input type="submit" value="Delete Star"
+                onclick="return confirm('Are you sure you want to delete this entry?')">
+        </form>
+{%endif%}
 <br>
 {% endblock %}

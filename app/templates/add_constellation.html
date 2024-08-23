@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class = form_div>
+    <h1>Add Constellation</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <h3>{{ form.name.label }}</h3>
+        {{ form.name(placeholder="Name") }}
+
+        <h3>{{ form.description.label }}</h3>
+        {{ form.description(placeholder="Description") }}
+
+        <h3>{{ form.story.label }}</h3>
+        {{ form.story(placeholder="Story") }}
+
+        <h3>{{ form.image.label }}</h3>
+        {{ form.image }}
+
+        <br><br>
+        {{ form.submit() }}
+        <br>
+    </form>
+</div>
+{% endblock %}

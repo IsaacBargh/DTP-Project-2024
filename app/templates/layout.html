@@ -14,6 +14,9 @@
         <a href="/all_planets">Planets</a>
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
+        {%if person != 'none'%}
+        <a href="/add_data">Add data</a>
+        {%endif%}
         <div class="right">
             {% if person == None %}
             <a  href="/login">Login</a>
@@ -27,9 +30,6 @@
     <hr>
     <main>
     {%block content%}{%endblock%}
-    {%if admin == 1%}
-    <p>Welcome admin</p>
-    {%endif%}
     </main>
     <footer>COPYRIGHT ©2024 Isaac Bargh &nbsp;&nbsp;&nbsp;CONTACT: 20292@burnside.school.nz</footer>
 </body>

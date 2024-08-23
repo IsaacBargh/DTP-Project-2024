@@ -1,6 +1,6 @@
 /* Global */
 html,body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
     background-color: #222;
     color: whitesmoke;
     height: 100%;
@@ -23,8 +23,8 @@ main:after {
 }
 
 .all_link_container {
-    display: grid;
     /* creates three columns of even width */
+    display: grid;
     grid-template-columns: 25% 25% 25%;
     gap: 10%;
 }
@@ -38,7 +38,6 @@ main:after {
     margin-right: auto;
     color: whitesmoke;
     padding: 5px;
-    width: 35%;
     transition: color 0.3s;
 }
 
@@ -50,6 +49,20 @@ main:after {
 .info p{
     width: 60%;
 }
+
+input[type=submit]{
+    background-color:rgb(121, 13, 13);
+    color: white;
+    user-select: none;
+    border-radius:15px;
+    width:15%;
+    padding: 5px;
+    font-size: 100%;
+    transition: 0.2s;
+    display: block;
+    margin-left: 2%;
+    margin-top: 10%;
+  }
 
 /* images */
 
@@ -125,34 +138,41 @@ hr {
     background-color: rgb(30, 80, 180);
 }
 
-/* login page */
+/* form pages */
 
-.account_div{
+.form_div{
     text-align: center;
     width: 40%;
     margin: auto;
     margin-top: 5%;
 }
 
-.account_div h1{
+.form_div h1{
     color: rgb(235, 175, 60);
     font-weight: 600;
     font-size: 60px;
     text-align: center;
 }
 
-.account_div input {
+.form_div input, textarea, select{
     width: 100%;
     background-color: lightgray;
     border-radius: 8px;
-    padding: 10px;
+    padding: 2%;
   }
 
-  .account_div input:focus {
+  .form_div input:focus, textarea:focus, select:focus{
     background-color: gray;
+    color:
   }
 
-  .account_div input[type=submit]{
+
+.form_div select{
+    width: 104.5%; /* select field doesnt line up with the other fields*/
+}
+
+
+  .form_div input[type=submit]{
     background-color:rgb(30, 80, 180);
     color: white;
     user-select: none;
@@ -166,19 +186,23 @@ hr {
   }
 
 
-  .account_div input[type=submit]:hover{
+  .form_div input[type=submit]:hover{
     background-color:rgb(10, 40, 100);
   }
 
-  .account_div a{
+
+ 
+
+  .form_div a{
     color:rgb(30, 80, 180);
     text-decoration: underline;
   } 
 
-  .account_div h3{
+  .form_div h3{
     text-align: left;
   } 
 
+  
 /* 404 page */
 
 .error{

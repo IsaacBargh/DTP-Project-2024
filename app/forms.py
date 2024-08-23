@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField
 from wtforms.validators import DataRequired, EqualTo, Length
-import app.models
+from wtforms_alchemy import QuerySelectField
+from app.models import Constellation, Lifecycle
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=51)])
@@ -14,3 +15,28 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class Add_Star(FlaskForm):
+    def choice_constellation():
+        return Constellation.query
+
+    def choice_stage():
+        return Lifecycle.query
+    name = StringField('Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    constellation = QuerySelectField(query_factory=choice_constellation, allow_blank=True)
+    image = StringField('Image')
+    stage = QuerySelectField(query_factory=choice_stage, allow_blank=True)
+    submit = SubmitField('Submit')
+
+
+class Add_Constellation(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    story = TextAreaField('story')
+    image = StringField('Image')
+    submit = SubmitField('Submit')
+
+
+
