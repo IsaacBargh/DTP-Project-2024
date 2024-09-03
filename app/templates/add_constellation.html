@@ -15,12 +15,16 @@
         <h3>{{ form.story.label }}</h3>
         {{ form.story(placeholder="Story") }}
 
+        <h3>{{ form.months.label }}</h3>
+        {{ form.months (class="multiselect")}}
+
         <h3>{{ form.image.label }}</h3>
         {{ form.image }}
+         <img id="image-preview" src="#" alt="Image Preview">
 
-        <br><br>
         {{ form.submit() }}
         <br>
     </form>
 </div>
+<script src="{{ url_for('static', filename='image-preview.js') }}"></script>
 {% endblock %}

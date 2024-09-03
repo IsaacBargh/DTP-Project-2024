@@ -13,11 +13,11 @@
     </p>
     <p> 
         {#adds changes star to stars for plural#}
-        {{constellation.name}} contains the
-        {% if products|length <= 1 %}
-            star {{ star.name }}
+        {% if stars|length == 0 %}
+        {%elif stars|length <= 1 %}
+            {{constellation.name}} contains the star {%for star in stars%}{{ star.name }}{%endfor%}
         {%else%}
-            stars  {{ star.name }}
+            {{constellation.name}} contains the stars  {%for star in stars%}{{ star.name }} {%endfor%}
         {%endif%}
     </p>
 </div>

@@ -7,7 +7,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(basedir, "night.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOADED_IMAGES_DEST'] = '/static/images'
+app.config['UPLOADED_IMAGES_DEST'] = os.path.join(basedir, 'static/images')
 images = UploadSet('images', IMAGES)
 configure_uploads(app, images)
 app.secret_key = 'Very$ecret'
@@ -105,9 +105,9 @@ def constellation(id):
     person = signed_in()
     admin = is_admin()
     constellation = models.Constellation.query.filter_by(id=id).first()
-    star = models.Star.query.filter_by(constellation=id).first()
+    stars = models.Star.query.filter_by(constellation=id).all()
     return render_template('constellation.html', constellation=constellation, 
-                           person=person, star=star, admin=admin)
+                           person=person, stars=stars, admin=admin)
 
 
 @app.route('/add_data')
@@ -135,9 +135,12 @@ def add_star():
             new_star = models.Star()
             new_star.name = form.name.data
             new_star.description = form.description.data
-            new_star.constellation = form.constellation.data
-            new_star.image = form.image.data
-            new_star.stage = form.stage.data
+            if form.constellation.data:
+                new_star.constellation = form.constellation.data.id
+            else:
+                new_star.constellation = None
+            new_star.image = images.save(form.image.data)
+            new_star.stage = form.stage.data.id
             db.session.add(new_star)
             db.session.commit()
             return redirect(url_for('add_star'))
@@ -152,6 +155,7 @@ def add_constellation():
     if person == 'none':
         return render_template("404.html", person=person, admin=admin), 404
     form = Add_Constellation()
+    form.months.query = models.Month.query.all()
     if request.method == 'GET':
         return render_template('add_constellation.html', form=form, person=person, admin=admin)
     else:
@@ -160,7 +164,8 @@ def add_constellation():
             new_constellation.name = form.name.data
             new_constellation.description = form.description.data
             new_constellation.story = form.story.data
-            new_constellation.image = form.image.data
+            new_constellation.image = images.save(form.image.data)
+            new_constellation.months.extend(form.months.data)
             db.session.add(new_constellation)
             db.session.commit()
             return redirect(url_for('add_constellation'))
@@ -190,7 +195,7 @@ def create_user():
             person = session['user']
             if 'admin ' in session.keys():
                 admin = session['admin']
-            return redirect(url_for('home'), person=person, admin=admin)
+            return redirect(url_for('home'))
         return render_template('create_user.html', form=form, person=person, admin=admin)
 
 

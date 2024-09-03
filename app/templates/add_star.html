@@ -15,16 +15,16 @@
         <h3>{{ form.constellation.label }}</h3>
         {{ form.constellation(placeholder="Constellation") }}
 
-        <h3>{{ form.image.label }}</h3>
-        {{ form.image }}
-
         <h3>{{ form.stage.label }}</h3>
         {{ form.stage(placeholder="Stage") }}
-        <br><br>
+
+        <h3>{{ form.image.label }}</h3>
+        {{ form.image }}
+        <img id="image-preview" src="#" alt="Image Preview">
+
         {{ form.submit() }}
         <br>
     </form>
 </div>
-{{stage}}
-{{constellation}}
+<script src="{{ url_for('static', filename='image-preview.js') }}"></script>
 {% endblock %}

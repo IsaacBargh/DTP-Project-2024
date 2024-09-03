@@ -4,11 +4,17 @@ html,body {
     background-color: #222;
     color: whitesmoke;
     height: 100%;
+    margin: 0;
+}
+
+h1,h2,p{
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 main{
-    min-height: 100%;
-    margin-bottom: -110px;
+    min-height: 80%;
+    margin; 10px;
 }
 
 main:after {
@@ -20,6 +26,17 @@ main:after {
 .right {
     display: flex;
     align-items: center;
+}
+
+.add_data{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    padding-top: 6%;
+}
+
+.add_data img{
+    height: 300px;
 }
 
 .all_link_container {
@@ -42,8 +59,8 @@ main:after {
 }
 
 .info{
-    margin: 2%;
-    margin-top: 8%;
+    padding: 2%;
+    padding-top: 6%;
 }
 
 .info p{
@@ -61,12 +78,17 @@ input[type=submit]{
     transition: 0.2s;
     display: block;
     margin-left: 2%;
-    margin-top: 10%;
+    margin-top: 8%;
+  }
+
+  input[type=submit]:hover{
+    background-color:rgb(71, 9, 9);
   }
 
 /* images */
 
 .img {
+    margin-top: 80px;
     height: 450px;
     float: right;
     border-radius: 2%;
@@ -98,6 +120,16 @@ a:hover .all_name {
     color: rgb(30, 80, 180);
 }
 
+#image-preview {
+    display: none;
+    width: 50%;
+    margin-top: 10px;
+    border: 1px solid rgb(235, 175, 60);
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Layout */
 
 a {
@@ -110,6 +142,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px; /* Adjust padding as needed */
+    background-color: rgb(24, 24, 26);
 }
 
 nav a {
@@ -117,25 +150,38 @@ nav a {
     text-decoration: none;
     font-weight: 800;
     font-size: large;
-    margin: 0 10px;
+    margin: 5px 10px;
+
+    transition: 0.2s;
 }
 
 nav :hover {
-    color: rgb(187, 122, 3);
+    color: rgb(152, 100, 3);
 }
 
 footer {
     color: rgb(235, 175, 60);
     text-align: center;
-    height: 100px;
+    background-color: #1e1a1a;
+    height: 60px;
+    padding-top: 20px;
 }
 
+
 hr {
-    width: 40%;
-    margin-left: 100px;
+    margin-top: 0px;
     border: none;
     height: 5px;
     background-color: rgb(30, 80, 180);
+    opacity: 0.3;
+}
+
+.month{
+    width: 20%;
+    margin-left: 10px;
+    margin-top: 0px;
+    background-color:  rgb(235, 175, 60);
+    opacity: 1;
 }
 
 /* form pages */
@@ -160,6 +206,17 @@ hr {
     border-radius: 8px;
     padding: 2%;
   }
+
+  .form_div textarea{
+    resize: vertical; /* Only allows vertical resizing */
+    min-height: 50px;
+    max-height: 300px;
+  }
+
+.multiselect{
+    min-height: 220px;
+    overflow: hidden;
+}
 
   .form_div input:focus, textarea:focus, select:focus{
     background-color: gray;

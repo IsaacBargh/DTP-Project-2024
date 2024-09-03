@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-{%for month in months%}
-<a href='/month/{{month.id}}'>{{month.name}}</a>
-<br>
-{%endfor%}
+<br><br>
+<div class="all_link_container">
+    {%for month in months%}
+    <div>
+        <a href = "/month/{{month.id}}">
+            <h3 class="all_name">
+            {{month.name}}
+            </h3>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+<br><br>
 {% endblock %}
