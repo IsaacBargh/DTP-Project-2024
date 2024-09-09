@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField
-from wtforms.validators import DataRequired, EqualTo, Length,  ValidationError
+from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms_alchemy import QuerySelectField, QuerySelectMultipleField
 from app.models import Constellation, Lifecycle
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=51)])

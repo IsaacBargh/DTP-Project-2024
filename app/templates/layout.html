@@ -14,6 +14,23 @@
         <a href="/all_planets">Planets</a>
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
+        <div class="dropdown">
+            <button class="dropbtn">Months ▼</button>
+            <div class="dropdown-content">
+              <a href="/month/1">January</a>
+              <a href="/month/2">February</a>
+              <a href="/month/3">March</a>
+              <a href="/month/4">April</a>
+              <a href="/month/5">May</a>
+              <a href="/month/6">June</a>
+              <a href="/month/7">July</a>
+              <a href="/month/8">August</a>
+              <a href="/month/9">September</a>
+              <a href="/month/10">October</a>
+              <a href="/month/11">November</a>
+              <a href="/month/12">December</a>
+            </div>
+          </div>
         {%if person != 'none'%}
         <a href="/add_data">Add data</a>
         {%endif%}
@@ -27,7 +44,6 @@
             {% endif %}
         </div>
     </nav>
-    <hr>
     <main>
     {%block content%}{%endblock%}
     </main>

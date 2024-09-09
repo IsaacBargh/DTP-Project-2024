@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, redirect, request, url_for, session, flash
+from flask import render_template, redirect, request, url_for, session, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_uploads import configure_uploads, IMAGES, UploadSet
 import os
@@ -115,7 +115,7 @@ def add_data():
     person = signed_in()
     admin = is_admin()
     if person == 'none':
-        return render_template("404.html", person=person, admin=admin), 404
+        abort(401)
     return render_template('add_data.html', person=person, admin=admin)
 
 
@@ -124,7 +124,7 @@ def add_star():
     person = signed_in()
     admin = is_admin()
     if person == 'none':
-        return render_template("404.html", person=person, admin=admin), 404
+        abort(401)
     form = Add_Star()
     form.constellation.query = models.Constellation.query.all()
     form.stage.query = models.Lifecycle.query.all()
@@ -139,7 +139,10 @@ def add_star():
                 new_star.constellation = form.constellation.data.id
             else:
                 new_star.constellation = None
-            new_star.image = images.save(form.image.data)
+            if new_star.image is None:
+                new_star.image = "basic.jpg"
+            else:
+                new_star.image = images.save(form.image.data)
             new_star.stage = form.stage.data.id
             db.session.add(new_star)
             db.session.commit()
@@ -153,7 +156,7 @@ def add_constellation():
     person = signed_in()
     admin = is_admin()
     if person == 'none':
-        return render_template("404.html", person=person, admin=admin), 404
+        abort(401)
     form = Add_Constellation()
     form.months.query = models.Month.query.all()
     if request.method == 'GET':
@@ -238,7 +241,7 @@ def delete_constellation(id):
     person = signed_in()
     admin = is_admin()
     if admin == 0:
-        return render_template("404.html", person=person, admin=admin), 404
+        abort(401)
     constellation = models.Constellation.query.get_or_404(id)
     db.session.delete(constellation)
     db.session.commit()
@@ -250,7 +253,8 @@ def delete_star(id):
     person = signed_in()
     admin = is_admin()
     if admin == 0:
-        return render_template("404.html", person=person, admin=admin), 404
+        abort(401)
+        # retur1 render_template("404.html", person=person, admin=admin), 404
     star = models.Star.query.get_or_404(id)
     db.session.delete(star)
     db.session.commit()
@@ -258,7 +262,13 @@ def delete_star(id):
 
 
 @app.errorhandler(404)
-def not_found(e):
+def error404(e):
     person = signed_in()
     admin = is_admin()
-    return render_template("404.html", person=person, admin=admin), 404
+    return render_template("404.html", person=person, admin=admin, error=e)
+
+@app.errorhandler(401)
+def error4014(e):
+    person = signed_in()
+    admin = is_admin()
+    return render_template("401.html", person=person, admin=admin, error=e)
