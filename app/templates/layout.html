@@ -30,13 +30,13 @@
         <a href="/all_planets">Planets</a>
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
-        {%if person != 'none'%}
+        {%if person != None%}
         <a href="/add_data">Add data</a>
         {%endif%}
         <div class="right">
             {% if person == None %}
             <a  href="/login">Login</a>
-            {% elif person != 'none' %}
+            {% elif person != None %}
             <a href="/clear_user">Logout</a>
             {% else%}
             <a  href="/login">Login</a>

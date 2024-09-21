@@ -21,19 +21,19 @@ from app.models import db, User
 
 
 def signed_in():
-    # checks if user is signed in, returns username or none
+    # checks if user is signed in, returns username or None
     if 'user' in session.keys():
         return session['user']
     else:
-        return 'none'
+        return None
 
 
 def is_admin():
-    # checks if user is admin, returns 1 or 0 to represent admin vs not.
+    # checks if user is admin, returns 1 or None admin vs not.
     if 'admin' in session.keys():
         return session['admin']
     else:
-        return 0
+        return None
 
 
 @app.route('/')
@@ -106,7 +106,7 @@ def constellation(id):
 def add_data():
     person = signed_in()
     admin = is_admin()
-    if person == 'none':
+    if person == None:
         abort(401)
     return render_template('add_data.html', person=person, admin=admin)
 
@@ -115,7 +115,7 @@ def add_data():
 def add_star():
     person = signed_in()
     admin = is_admin()
-    if person == 'none':
+    if person == None:
         abort(401)
     form = Add_Star()
     form.constellation.query = models.Constellation.query.all()
@@ -147,7 +147,7 @@ def add_star():
 def add_constellation():
     person = signed_in()
     admin = is_admin()
-    if person == 'none':
+    if person == None:
         abort(401)
     form = Add_Constellation()
     form.months.query = models.Month.query.all()
@@ -233,7 +233,7 @@ def clear_user():
 def delete_constellation(id):
     person = signed_in()
     admin = is_admin()
-    if admin == 0:
+    if admin is None:
         abort(401)
     constellation = models.Constellation.query.get_or_404(id)
     db.session.delete(constellation)
@@ -245,7 +245,7 @@ def delete_constellation(id):
 def delete_star(id):
     person = signed_in()
     admin = is_admin()
-    if admin == 0:
+    if admin is None:
         abort(401)
         # retur1 render_template("404.html", person=person, admin=admin), 404
     star = models.Star.query.get_or_404(id)
