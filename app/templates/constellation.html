@@ -2,32 +2,37 @@
 {% block content %}
     <img class="img" src="/static/images/{{ constellation.image }}">
 <div class="info">
-    <h1>{{constellation.name}}</h1>
+    <h1>{{ constellation.name }}</h1>
     <hr>
-    <p>{{constellation.description}}</p>
-    <p>{{constellation.story}}</p>
+    <p>{{ constellation.description }}</p>
+    <p>{{ constellation.story }}</p>
     <p> 
-        {{constellation.name}} is viewable in 
-        {%for month in constellation.months%}
-            {{month}}
-        {%endfor%}
+        {{ constellation.name }} is viewable in
+        {% for month in constellation.months %}
+            {%if loop.index == constellation.months|length %}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>.
+            {%else%}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>,
+            {% endif %}
+        {% endfor %}
     </p>
     <p> 
-        {#adds changes star to stars for plural#}
-        {% if stars|length == 0 %}
-        {%elif stars|length <= 1 %}
-            {{constellation.name}} contains the star {%for star in stars%}{{ star.name }}{%endfor%}
-        {%else%}
-            {{constellation.name}} contains the stars  {%for star in stars%}{{ star.name }} {%endfor%}
-        {%endif%}
+        {{ constellation.name }} contains the star(s)
+        {% for star in stars %}
+            {%if loop.index == stars|length %}
+            <a href = "/star/{{ star.id }}" class="in_page_lnk">{{ star }}</a>.
+            {%else%}
+            <a href = "/star/{{ star.id }}" class="in_page_lnk">{{ star }}</a>,
+            {% endif %}
+        {% endfor %}
     </p>
 </div>
-{%if admin == 1%}
+{% if admin == 1 %}
 <form method="POST"
                 action="{{ url_for('delete_constellation', id=constellation.id) }}">
             <input type="submit" value="Delete Constellation"
                 onclick="return confirm('Are you sure you want to delete this entry?')">
         </form>
-{%endif%}
+{% endif %}
 <br>
 {% endblock %}

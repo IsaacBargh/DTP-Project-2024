@@ -107,6 +107,11 @@ input[type=submit]:hover{
     font-size: 30px;
 }
 
+.in_page_lnk{
+    color:rgb(30, 80, 180);
+    text-decoration: underline;
+}
+
 
 /* images */
 
