@@ -106,7 +106,7 @@ def constellation(id):
 def add_data():
     person = signed_in()
     admin = is_admin()
-    if person == None:
+    if person is None:
         abort(401)
     return render_template('add_data.html', person=person, admin=admin)
 
@@ -115,7 +115,7 @@ def add_data():
 def add_star():
     person = signed_in()
     admin = is_admin()
-    if person == None:
+    if person is None:
         abort(401)
     form = Add_Star()
     form.constellation.query = models.Constellation.query.all()
@@ -147,7 +147,7 @@ def add_star():
 def add_constellation():
     person = signed_in()
     admin = is_admin()
-    if person == None:
+    if person is None:
         abort(401)
     form = Add_Constellation()
     form.months.query = models.Month.query.all()
@@ -259,6 +259,7 @@ def error404(e):
     person = signed_in()
     admin = is_admin()
     return render_template("404.html", person=person, admin=admin, error=e)
+
 
 @app.errorhandler(401)
 def error4014(e):
