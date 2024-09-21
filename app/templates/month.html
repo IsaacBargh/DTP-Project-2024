@@ -3,8 +3,8 @@
 <h1>{{month.name}}</h1>
 <hr class="month">
 
-<h2>Planets</h2>
-<div class="all_link_container">
+<h2 class="month_sub">Planets</h2>
+<div class="month_container">
     {%for planet in month.planets%}
     <div>
         <a href = "/planet/{{planet.id}}">
@@ -16,9 +16,9 @@
     </div>
     {%endfor%}
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<h2>Constellations  </h2>
-<div class="all_link_container">
+<br><br><br><br>
+<h2 class="month_sub">Constellations  </h2>
+<div class="month_container">
     {%for constellation in month.constellations%}
     <div>
         <a href = "/constellation/{{constellation.id}}">

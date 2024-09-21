@@ -6,15 +6,15 @@ from app.models import Constellation, Lifecycle
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3,max=51)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=5,max=51)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
+    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=51)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=5, max=51)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message='Passwords must match'), Length(min=5, max=51)])
     submit = SubmitField('Register')
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=51)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=5, max=51)])
     submit = SubmitField('Submit')
 
 

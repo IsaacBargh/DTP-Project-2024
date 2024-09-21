@@ -43,19 +43,11 @@ def home():
     return render_template('home.html', message='home', person=person, admin=admin)
 
 
-@app.route('/all_months')
-def all_months():
-    person = signed_in()
-    admin = is_admin()
-    months = models.Month.query.all()
-    return render_template('all_months.html', months=months, person=person, admin=admin)
-
-
 @app.route('/month/<int:id>')
 def month(id):
     person = signed_in()
     admin = is_admin()
-    month = models.Month.query.filter_by(id=id).first()
+    month = models.Month.query.filter_by(id=id).first_or_404()
     return render_template('month.html', month=month, person=person, admin=admin)
 
 
@@ -71,7 +63,7 @@ def all_planets():
 def planet(id):
     person = signed_in()
     admin = is_admin()
-    planet = models.Planet.query.filter_by(id=id).first()
+    planet = models.Planet.query.filter_by(id=id).first_or_404()
     return render_template('planet.html', planet=planet, person=person, admin=admin)
 
 
@@ -87,7 +79,7 @@ def all_stars():
 def star(id):
     person = signed_in()
     admin = is_admin()
-    star = models.Star.query.filter_by(id=id).first()
+    star = models.Star.query.filter_by(id=id).first_or_404()
     return render_template('star.html', star=star, person=person, admin=admin)
 
 
@@ -96,7 +88,7 @@ def all_constellations():
     person = signed_in()
     admin = is_admin()
     constellations = models.Constellation.query.all()
-    return render_template('all_constellations.html', constellations=constellations, 
+    return render_template('all_constellations.html', constellations=constellations,
                            person=person, admin=admin)
 
 
@@ -104,9 +96,9 @@ def all_constellations():
 def constellation(id):
     person = signed_in()
     admin = is_admin()
-    constellation = models.Constellation.query.filter_by(id=id).first()
+    constellation = models.Constellation.query.filter_by(id=id).first_or_404()
     stars = models.Star.query.filter_by(constellation=id).all()
-    return render_template('constellation.html', constellation=constellation, 
+    return render_template('constellation.html', constellation=constellation,
                            person=person, stars=stars, admin=admin)
 
 
@@ -146,7 +138,7 @@ def add_star():
             new_star.stage = form.stage.data.id
             db.session.add(new_star)
             db.session.commit()
-            return redirect(url_for('add_star'))
+            return redirect(url_for('all_stars'))
         else:
             return render_template('add_star.html', person=person, admin=admin)
 
@@ -160,7 +152,8 @@ def add_constellation():
     form = Add_Constellation()
     form.months.query = models.Month.query.all()
     if request.method == 'GET':
-        return render_template('add_constellation.html', form=form, person=person, admin=admin)
+        return render_template('add_constellation.html', form=form,
+                               person=person, admin=admin)
     else:
         if form.validate_on_submit():
             new_constellation = models.Constellation()
@@ -192,9 +185,9 @@ def create_user():
             db.session.add(user)
             db.session.commit()
             session['user'] = username
-            info = models.User.query.filter_by(username=username).first()
+            info = models.User.query.filter_by(username=username).first_or_404()
             session['admin'] = info.admin
-            user = User.query.filter_by(username=username).first()
+            user = User.query.filter_by(username=username).first_or_404()
             person = session['user']
             if 'admin ' in session.keys():
                 admin = session['admin']
@@ -211,13 +204,13 @@ def login():
         username = form.username.data
         password = form.password.data
         # Retrieve the user from the database
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first_or_404()
         if user and user.check_password(password):
             flash('Logged in successfully!')
             session['user'] = username
             person = session['user']
             # Retreive account info from database
-            info = models.User.query.filter_by(username=person).first()
+            info = models.User.query.filter_by(username=person).first_or_404()
             session['admin'] = info.admin
             admin = session['admin']
             return render_template('home.html', person=person, admin=admin)
