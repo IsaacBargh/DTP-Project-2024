@@ -1,10 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if person != None %}
-        <h1>{{person}}</h1>
-{% endif %}
 <div class="home_intro">
         <h1>Southern Skies</h1>
+        {%if get_flashed_messages()%}
+        <div class="flash">
+                {%for message in get_flashed_messages()%}
+                        {{message}}
+                {%endfor%}
+        </div>
+        {%endif%}
         <img class="img" src="/static/images/Nebula.jpg">
         <div class="home_txt">
                 <h2>Welcome</h2>
@@ -20,9 +24,12 @@
                         Here, you'll learn when to look for these fascinating objects, with viewing 
                         guides that change with the seasons. Dive into the myths and legends that have 
                         shaped human understanding of the stars for centuries, as each constellation 
-                        carries a story—one that connects our modern gaze with the ancient past. Let us 
+                        carries a story that connects our modern gaze with the ancient past. Let us 
                         take you on a journey through space and time, revealing the beauty and mystery 
                         of the universe just above.
+                </p>
+                <p>
+                        It is important to note that viewability of skies is based on New Zealand.
                 </p>
         </div>
         <hr>

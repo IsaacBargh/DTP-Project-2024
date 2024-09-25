@@ -6,7 +6,7 @@ from app.models import Constellation, Lifecycle
 
 MIN_USR = 3
 MIN_PASSWORD = 5
-MAX = 51
+MAX = 50
 
 
 class RegistrationForm(FlaskForm):
@@ -33,7 +33,7 @@ class Add_Star(FlaskForm):
     constellation = QuerySelectField(query_factory=choice_constellation, allow_blank=True)
     image = FileField('Image')
     stage = QuerySelectField(query_factory=choice_stage)
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add')
 
 
 class Add_Constellation(FlaskForm):
@@ -42,4 +42,4 @@ class Add_Constellation(FlaskForm):
     story = TextAreaField('Story / Myth')
     image = FileField('Image')
     months = QuerySelectMultipleField('Months Viewable')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add')

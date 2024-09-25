@@ -14,6 +14,13 @@
     <h3>{{ form.confirm_password.label }}</h3>
     {{ form.confirm_password(placeholder="Password") }}
     <br><br>
+    {%if get_flashed_messages()%}
+        <div class="log_flash">
+        {%for message in get_flashed_messages()%}
+            {{message}}
+        {%endfor%}
+        </div>
+      {%endif%}
     {{ form.submit() }}
   </form>
   <p>Already have an existing account? <a href="/login">Login</a></p>

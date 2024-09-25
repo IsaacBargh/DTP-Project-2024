@@ -24,10 +24,6 @@ main:after {
     height: 100px;
 }
 
-.right {
-    display: flex;
-    align-items: center;
-}
 
 hr{
     width: 30%;
@@ -41,12 +37,24 @@ hr{
 .add_data{
     display: grid;
     grid-template-columns: 45% 45%;
-    gap: 10%;
+    column-gap: 10%;
     padding-top: 6%;
 }
 
 .add_data img{
     height: 300px;
+}
+
+.flash{
+    background-color: rgb(128, 141, 255);
+    color: rgb(29, 31, 81);
+    width: 50%;
+    border:2px solid rgb(29, 31, 81) ;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
 }
 
 /* Images */
@@ -98,7 +106,7 @@ a:hover .all_name {
 /* Home */
 
 .home_intro{
-    margin-top: 5%;
+    margin-top: %;
 }
 
 .home_intro h1{
@@ -111,7 +119,7 @@ a:hover .all_name {
 
 .home_txt{
     font-size: 120%;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 
@@ -139,7 +147,7 @@ a:hover .all_name {
 .home_container {
     display: grid;
     grid-template-columns: 18% 18% 18% 18% 18%;
-    gap: 2%;
+    column-gap: 2%;
 }
 
 /* All Link Pages */
@@ -147,7 +155,7 @@ a:hover .all_name {
 .all_link_container {
     display: grid;
     grid-template-columns: 25% 25% 25%;
-    gap: 12%;
+    column-gap: 12%;
 }
 
 .all_name {
@@ -160,6 +168,8 @@ a:hover .all_name {
     color: whitesmoke;
     padding: 5px;
     transition: color 0.3s;
+    margin-top: 0px;
+    margin-bottom: 20%;
 }
 
 .info{
@@ -194,7 +204,7 @@ input[type=submit]:hover{
 .month_container {
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;
-    gap: 7%;
+    column-gap: 6%;
 }
 
 .month_sub{
@@ -350,8 +360,8 @@ footer {
     font-size: 100%;
     transition: 0.2s;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    margin-top: 4%;
   }
 
 
@@ -370,6 +380,19 @@ footer {
   .form_div h3{
     text-align: left;
   } 
+
+
+  .log_flash{
+    background-color: rgb(216, 109, 109);
+    color: rgb(87, 12, 12);
+    border:2px solid rgb(87, 12, 12) ;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
 
   
 /* Error Pages */

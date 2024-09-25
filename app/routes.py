@@ -37,11 +37,16 @@ def is_admin():
         return None
 
 
+def present_month():
+    id = datetime.datetime.now().strftime("%m")
+    month = models.Month.query.filter_by(id=id).first_or_404()
+    return month
+
+
 @app.route('/')
 def home():
     person = signed_in()
-    id = datetime.datetime.now().strftime("%m")
-    month = models.Month.query.filter_by(id=id).first_or_404()
+    month = present_month()
     return render_template('home.html', person=person, month=month)
 
 
@@ -177,6 +182,11 @@ def create_user():
         if form.validate_on_submit():
             username = form.username.data
             password = form.password.data
+            # makes sure username doesn't already exists
+            existing_user = User.query.filter_by(username=username).first()
+            if existing_user:
+                flash('Username already exists. Please choose a different username.')
+                return render_template('create_user.html', form=form, person=person, admin=admin)
             user = User(username=username)
             user.set_password(password)
             db.session.add(user)
@@ -186,33 +196,41 @@ def create_user():
             session['admin'] = info.admin
             user = User.query.filter_by(username=username).first_or_404()
             person = session['user']
+            flash(f'Welcome {username}!')
             if 'admin ' in session.keys():
                 admin = session['admin']
-            return redirect(url_for('home'))
+            month = present_month()
+            return render_template('home.html', person=person, admin=admin, month=month)
+        # displays errors to user
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f"{error}")
         return render_template('create_user.html', form=form, person=person, admin=admin)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     person = signed_in()
+    admin = is_admin()
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         # Retrieve the user from the database
-        user = User.query.filter_by(username=username).first_or_404()
+        user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
             flash('Logged in successfully!')
             session['user'] = username
             person = session['user']
             # Retreive account info from database
-            info = models.User.query.filter_by(username=person).first_or_404()
+            info = models.User.query.filter_by(username=person).first()
             session['admin'] = info.admin
             admin = session['admin']
-            return render_template('home.html', person=person, admin=admin)
+            month = present_month()
+            return render_template('home.html', person=person, admin=admin, month=month)
         else:
             flash('Invalid username or password.')
-    return render_template('login.html', form=form, person=person)
+    return render_template('login.html', form=form, person=person, admin=admin)
 
 
 @app.route('/clear_user')
@@ -220,9 +238,8 @@ def clear_user():
     session.clear()
     session.pop('user', None)
     session.pop('admin', None)
-    person = signed_in()
-    admin = is_admin()
-    return render_template('home.html', message='Logged out', person=person, admin=admin)
+    flash('Logged out Succesfully!')
+    return redirect(url_for('home'))
 
 
 @app.route('/delete_constellation/<int:id>', methods=['GET', 'POST'])

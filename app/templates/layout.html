@@ -13,39 +13,36 @@
         <div class="dropdown">
             <button class="dropbtn">Months ▼</button>
             <div class="dropdown-content">
-              <a href="/month/1">January</a>
-              <a href="/month/2">February</a>
-              <a href="/month/3">March</a>
-              <a href="/month/4">April</a>
-              <a href="/month/5">May</a>
-              <a href="/month/6">June</a>
-              <a href="/month/7">July</a>
-              <a href="/month/8">August</a>
-              <a href="/month/9">September</a>
-              <a href="/month/10">October</a>
-              <a href="/month/11">November</a>
-              <a href="/month/12">December</a>
+                <a href="/month/1">January</a>
+                <a href="/month/2">February</a>
+                <a href="/month/3">March</a>
+                <a href="/month/4">April</a>
+                <a href="/month/5">May</a>
+                <a href="/month/6">June</a>
+                <a href="/month/7">July</a>
+                <a href="/month/8">August</a>
+                <a href="/month/9">September</a>
+                <a href="/month/10">October</a>
+                <a href="/month/11">November</a>
+                <a href="/month/12">December</a>
             </div>
           </div>
         <a href="/all_planets">Planets</a>
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
         {%if person != None%}
-        <a href="/add_data">Add data</a>
+            <a href="/add_data">Add data</a>
         {%endif%}
-        <div class="right">
-            {% if person == None %}
-            <a  href="/login">Login</a>
-            {% elif person != None %}
+        {% if person != None %}
             <a href="/clear_user">Logout</a>
-            {% else%}
+        {% else%}
             <a  href="/login">Login</a>
-            {% endif %}
-        </div>
+        {% endif %}
     </nav>
     <main>
     {%block content%}{%endblock%}
     </main>
+    <br>
     <footer>COPYRIGHT ©2024 Isaac Bargh &nbsp;&nbsp;&nbsp;CONTACT: 20292@burnside.school.nz</footer>
 </body>
 </html>
