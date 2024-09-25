@@ -7,6 +7,18 @@
     <p>ORDER FROM THE SUN: {{planet.order}}</p>
     <p>{{planet.description}}</p>
     <p>On average {{planet.name}} is {{planet.distance}} from Earth</p>
+    <p> 
+        {{ planet.name }} is viewable in
+        {% for month in planet.months %}
+            {%if loop.index == planet.months|length %}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>.
+            {%elif loop.index == planet.months|length - 1 %}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a> &
+            {%else%}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>,
+            {% endif %}
+        {% endfor %}
+    </p>
     <br>
 </div>
 {% endblock %}

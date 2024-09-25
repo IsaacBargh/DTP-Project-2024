@@ -11,6 +11,8 @@
         {% for month in constellation.months %}
             {%if loop.index == constellation.months|length %}
             <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>.
+            {%elif loop.index == constellation.months|length - 1 %}
+            <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a> &
             {%else%}
             <a href = "/month/{{ month.id }}" class="in_page_lnk">{{ month }}</a>,
             {% endif %}
@@ -21,6 +23,8 @@
         {% for star in stars %}
             {%if loop.index == stars|length %}
             <a href = "/star/{{ star.id }}" class="in_page_lnk">{{ star }}</a>.
+            {%elif loop.index == stars|length - 1 %}
+            <a href = "/star/{{ star.id }}" class="in_page_lnk">{{ star }}</a> &
             {%else%}
             <a href = "/star/{{ star.id }}" class="in_page_lnk">{{ star }}</a>,
             {% endif %}

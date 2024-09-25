@@ -2,7 +2,68 @@
 {% block content %}
 {% if person != None %}
         <h1>{{person}}</h1>
-        {% endif %}
-<p>Night Website</p>
-<p>{{message}}</p>
+{% endif %}
+<div class="home_intro">
+        <h1>Southern Skies</h1>
+        <img class="img" src="/static/images/Nebula.jpg">
+        <div class="home_txt">
+                <h2>Welcome</h2>
+                <p>
+                        Welcome to our exploration of the Southern Hemisphere's night sky! Whether you're 
+                        a seasoned stargazer or just beginning your celestial journey, this website will 
+                        guide you through the wonders that can be seen overhead. From brilliant stars and 
+                        awe-inspiring constellations to the myths and stories that have been passed down 
+                        through generations, you'll discover the secrets of the cosmos that have 
+                        captivated humanity for millennia.
+                </p>
+                <p>
+                        Here, you'll learn when to look for these fascinating objects, with viewing 
+                        guides that change with the seasons. Dive into the myths and legends that have 
+                        shaped human understanding of the stars for centuries, as each constellation 
+                        carries a story—one that connects our modern gaze with the ancient past. Let us 
+                        take you on a journey through space and time, revealing the beauty and mystery 
+                        of the universe just above.
+                </p>
+        </div>
+        <hr>
+</div>
+<div class="home_month">
+        <h1>{{month}} Sky</h1>
+        <p>
+                Some of the planets viewable in {{month}} include {{month.planets[0]}}, {{month.planets[1]}} & {{month.planets[2]}}
+                as well as the constellations {{month.constellations[0]}}, {{month.constellations[1]}} & {{month.constellations[2]}}
+                and more seen below and on the {{month}} page.
+        </p>
+        <h2 class="month_sub">Planets</h2>
+        <div class="home_container">
+            {%for planet in month.planets%}
+            {%if loop.index <= 5%}
+            <div>
+                <a href = "/planet/{{planet.id}}">
+                    <img class="all_img" src="/static/images/{{ planet.image }}">
+                    <h3 class="all_name">
+                    {{planet.name}}
+                    </h3>
+                </a>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+        <br><br><br><br>
+        <h2 class="month_sub">Constellations  </h2>
+        <div class="home_container">
+            {%for constellation in month.constellations%}
+            {%if loop.index <= 5%}
+            <div>
+                <a href = "/constellation/{{constellation.id}}">
+                    <img class="all_img" src="/static/images/{{ constellation.image }}">
+                    <h3 class="all_name">
+                    {{constellation.name}}
+                    </h3>
+                </a>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+</div>
 {% endblock %}

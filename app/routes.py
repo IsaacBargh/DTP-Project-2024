@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, redirect, request, url_for, session, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_uploads import configure_uploads, IMAGES, UploadSet
+import datetime
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -39,40 +40,37 @@ def is_admin():
 @app.route('/')
 def home():
     person = signed_in()
-    admin = is_admin()
-    return render_template('home.html', message='home', person=person, admin=admin)
+    id = datetime.datetime.now().strftime("%m")
+    month = models.Month.query.filter_by(id=id).first_or_404()
+    return render_template('home.html', person=person, month=month)
 
 
 @app.route('/month/<int:id>')
 def month(id):
     person = signed_in()
-    admin = is_admin()
     month = models.Month.query.filter_by(id=id).first_or_404()
-    return render_template('month.html', month=month, person=person, admin=admin)
+    return render_template('month.html', month=month, person=person)
 
 
 @app.route('/all_planets')
 def all_planets():
     person = signed_in()
-    admin = is_admin()
     planets = models.Planet.query.all()
-    return render_template('all_planets.html', planets=planets, person=person, admin=admin)
+    return render_template('all_planets.html', planets=planets, person=person)
 
 
 @app.route('/planet/<int:id>')
 def planet(id):
     person = signed_in()
-    admin = is_admin()
     planet = models.Planet.query.filter_by(id=id).first_or_404()
-    return render_template('planet.html', planet=planet, person=person, admin=admin)
+    return render_template('planet.html', planet=planet, person=person)
 
 
 @app.route('/all_stars')
 def all_stars():
     person = signed_in()
-    admin = is_admin()
     stars = models.Star.query.all()
-    return render_template('all_stars.html', stars=stars, person=person, admin=admin)
+    return render_template('all_stars.html', stars=stars, person=person)
 
 
 @app.route('/star/<int:id>')
@@ -86,10 +84,9 @@ def star(id):
 @app.route('/all_constellations')
 def all_constellations():
     person = signed_in()
-    admin = is_admin()
     constellations = models.Constellation.query.all()
     return render_template('all_constellations.html', constellations=constellations,
-                           person=person, admin=admin)
+                           person=person)
 
 
 @app.route('/constellation/<int:id>')
@@ -105,23 +102,21 @@ def constellation(id):
 @app.route('/add_data')
 def add_data():
     person = signed_in()
-    admin = is_admin()
     if person is None:
         abort(401)
-    return render_template('add_data.html', person=person, admin=admin)
+    return render_template('add_data.html', person=person)
 
 
 @app.route('/add_star', methods=['GET', 'POST'])
 def add_star():
     person = signed_in()
-    admin = is_admin()
     if person is None:
         abort(401)
     form = Add_Star()
     form.constellation.query = models.Constellation.query.all()
     form.stage.query = models.Lifecycle.query.all()
     if request.method == 'GET':
-        return render_template('add_star.html', form=form, person=person, admin=admin)
+        return render_template('add_star.html', form=form, person=person)
     else:
         if form.validate_on_submit():
             new_star = models.Star()
@@ -131,42 +126,44 @@ def add_star():
                 new_star.constellation = form.constellation.data.id
             else:
                 new_star.constellation = None
-            if new_star.image is None:
-                new_star.image = "basic.jpg"
-            else:
+            if form.image.data:
                 new_star.image = images.save(form.image.data)
+            else:
+                new_star.image = "basic.jpg"
             new_star.stage = form.stage.data.id
             db.session.add(new_star)
             db.session.commit()
             return redirect(url_for('all_stars'))
         else:
-            return render_template('add_star.html', person=person, admin=admin)
+            return render_template('add_star.html', person=person)
 
 
 @app.route('/add_constellation', methods=['GET', 'POST'])
 def add_constellation():
     person = signed_in()
-    admin = is_admin()
     if person is None:
         abort(401)
     form = Add_Constellation()
     form.months.query = models.Month.query.all()
     if request.method == 'GET':
         return render_template('add_constellation.html', form=form,
-                               person=person, admin=admin)
+                               person=person)
     else:
         if form.validate_on_submit():
             new_constellation = models.Constellation()
             new_constellation.name = form.name.data
             new_constellation.description = form.description.data
             new_constellation.story = form.story.data
-            new_constellation.image = images.save(form.image.data)
+            if form.image.data:
+                new_constellation.image = images.save(form.image.data)
+            else:
+                new_constellation.image = "basic.jpg"
             new_constellation.months.extend(form.months.data)
             db.session.add(new_constellation)
             db.session.commit()
-            return redirect(url_for('add_constellation'))
+            return redirect(url_for('all_constellations'))
         else:
-            return render_template('add_constellation.html', person=person, admin=admin)
+            return render_template('add_constellation.html', person=person)
 
 
 @app.route('/create_user', methods=['GET', 'POST'])
@@ -198,7 +195,6 @@ def create_user():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     person = signed_in()
-    admin = is_admin()
     form = LoginForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -216,7 +212,7 @@ def login():
             return render_template('home.html', person=person, admin=admin)
         else:
             flash('Invalid username or password.')
-    return render_template('login.html', form=form, person=person, admin=admin)
+    return render_template('login.html', form=form, person=person)
 
 
 @app.route('/clear_user')
@@ -247,7 +243,6 @@ def delete_star(id):
     admin = is_admin()
     if admin is None:
         abort(401)
-        # retur1 render_template("404.html", person=person, admin=admin), 404
     star = models.Star.query.get_or_404(id)
     db.session.delete(star)
     db.session.commit()
@@ -257,12 +252,10 @@ def delete_star(id):
 @app.errorhandler(404)
 def error404(e):
     person = signed_in()
-    admin = is_admin()
-    return render_template("404.html", person=person, admin=admin, error=e)
+    return render_template("404.html", person=person, error=e)
 
 
 @app.errorhandler(401)
 def error4014(e):
     person = signed_in()
-    admin = is_admin()
-    return render_template("401.html", person=person, admin=admin, error=e)
+    return render_template("401.html", person=person, error=e)

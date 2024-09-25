@@ -4,17 +4,21 @@ from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms_alchemy import QuerySelectField, QuerySelectMultipleField
 from app.models import Constellation, Lifecycle
 
+MIN_USR = 3
+MIN_PASSWORD = 5
+MAX = 51
+
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=51)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=5, max=51)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=MIN_USR, max=MAX)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=MIN_PASSWORD, max=MAX)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message='Passwords must match'), Length(min=5, max=51)])
     submit = SubmitField('Register')
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=51)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=5, max=51)])
+    username = StringField('Username', validators=[DataRequired(), Length(min=MIN_USR, max=MAX)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=MIN_PASSWORD, max=MAX)])
     submit = SubmitField('Submit')
 
 

@@ -5,6 +5,7 @@ html,body {
     color: whitesmoke;
     height: 97.6%;
     margin: 0;
+    text-align: justify;
 }
 
 h1,h2,h3,p{
@@ -48,72 +49,7 @@ hr{
     height: 300px;
 }
 
-.all_link_container {
-    /* creates three columns of even width */
-    display: grid;
-    grid-template-columns: 25% 25% 25%;
-    gap: 10%;
-}
-
-.all_name {
-    text-decoration: none;
-    font-weight: bolder;
-    font-size: 200%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    color: whitesmoke;
-    padding: 5px;
-    transition: color 0.3s;
-}
-
-.info{
-    padding: 2%;
-    padding-top: 6%;
-}
-
-.info p{
-    width: 60%;
-}
-
-input[type=submit]{
-    background-color:rgb(121, 13, 13);
-    color: white;
-    user-select: none;
-    border-radius:15px;
-    width:15%;
-    padding: 5px;
-    font-size: 100%;
-    transition: 0.2s;
-    display: block;
-    margin-left: 2%;
-    margin-top: 8%;
-}
-
-input[type=submit]:hover{
-    background-color:rgb(71, 9, 9);
-}
-
-
-.month_container {
-    /* creates four columns of even width */
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20%;
-    gap: 5%;
-}
-
-.month_sub{
-    color:rgb(235, 175, 60);
-    font-size: 30px;
-}
-
-.in_page_lnk{
-    color:rgb(30, 80, 180);
-    text-decoration: underline;
-}
-
-
-/* images */
+/* Images */
 
 .img {
     margin-top: 80px;
@@ -158,6 +94,128 @@ a:hover .all_name {
     margin-right: auto;
 }
 
+
+/* Home */
+
+.home_intro{
+    margin-top: 5%;
+}
+
+.home_intro h1{
+    text-align: center;
+    font-size: 50px;
+    background-image: linear-gradient(to bottom, rgb(235, 175, 60), rgb(235, 175, 60), rgb(30, 58, 180));
+    color: transparent;
+    background-clip: text;
+}
+
+.home_txt{
+    font-size: 120%;
+    margin-top: 5%;
+}
+
+
+.home_intro img{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.home_intro hr{
+    margin-top: 5%;
+    width: 100%;
+    background-image: none;
+    background-color: rgb(235, 175, 60);
+}
+
+
+.home_month{
+    text-align: center;
+}
+
+.home_month img{
+    height: 250px;
+}
+
+.home_container {
+    display: grid;
+    grid-template-columns: 18% 18% 18% 18% 18%;
+    gap: 2%;
+}
+
+/* All Link Pages */
+
+.all_link_container {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    gap: 12%;
+}
+
+.all_name {
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 200%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: whitesmoke;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.info{
+    padding: 2%;
+    padding-top: 6%;
+}
+
+.info p{
+    width: 60%;
+}
+
+input[type=submit]{
+    background-color:rgb(121, 13, 13);
+    color: white;
+    user-select: none;
+    border-radius:15px;
+    width:15%;
+    padding: 5px;
+    font-size: 100%;
+    transition: 0.2s;
+    display: block;
+    margin-left: 2%;
+    margin-top: 8%;
+}
+
+input[type=submit]:hover{
+    background-color:rgb(71, 9, 9);
+}
+
+/* Month */
+
+.month_container {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    gap: 7%;
+}
+
+.month_sub{
+    color:rgb(235, 175, 60);
+    font-size: 30px;
+}
+
+.in_page_lnk{
+    color:rgb(91, 141, 241);
+    text-decoration: underline;
+}
+
+
+.month{
+    margin-top: 0px;
+    width: 20%;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+
+
 /* Layout */
 
 a {
@@ -169,7 +227,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Adjust padding as needed */
+    padding: 10px;
     background-color: rgb(24, 24, 26);
     border-bottom:  5px solid rgb(30, 80, 180);
     padding-bottom: 0 10px;
@@ -209,7 +267,7 @@ nav :hover {
     position: absolute;
     background-color: #222;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;     /*makes dropdown display obove website*/
+    z-index: 1;     /*makes dropdown display above website*/
   }
 
 .dropdown-content a {
@@ -238,14 +296,8 @@ footer {
     padding-top: 20px;
 }
 
-.month{
-    margin-top: 0px;
-    width: 20%;
-    margin-left: 10px;
-    margin-top: 0px;
-}
 
-/* form pages */
+/* Form Pages */
 
 .form_div{
     text-align: center;
@@ -269,7 +321,7 @@ footer {
   }
 
   .form_div textarea{
-    resize: vertical; /* Only allows vertical resizing */
+    resize: vertical; /* Only allows vertical resizing incase users input larger paragraphs*/
     min-height: 50px;
     max-height: 300px;
   }
@@ -320,7 +372,7 @@ footer {
   } 
 
   
-/* 404 page */
+/* Error Pages */
 
 .error{
     margin-top: 10%;
