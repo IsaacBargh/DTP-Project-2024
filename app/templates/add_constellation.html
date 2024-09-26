@@ -21,6 +21,16 @@
         <h3>{{ form.image.label }}</h3>
         {{ form.image }}
          <img id="image-preview" src="#" alt="Image Preview">
+         <br><br>
+
+         {# so flash CSS will only display when there are messages #}
+         {% if get_flashed_messages() %}
+         <div class="error_flash">
+                 {% for message in get_flashed_messages() %}
+                         {{ message }}
+                 {% endfor %}
+         </div>
+         {% endif %}
 
         {{ form.submit() }}
         <br>

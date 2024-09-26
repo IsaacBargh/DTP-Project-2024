@@ -34,16 +34,6 @@ hr{
     border-radius: 10%;
 }
 
-.add_data{
-    display: grid;
-    grid-template-columns: 45% 45%;
-    column-gap: 10%;
-    padding-top: 6%;
-}
-
-.add_data img{
-    height: 300px;
-}
 
 .flash{
     background-color: rgb(128, 141, 255);
@@ -104,10 +94,6 @@ a:hover .all_name {
 
 
 /* Home */
-
-.home_intro{
-    margin-top: %;
-}
 
 .home_intro h1{
     text-align: center;
@@ -307,6 +293,39 @@ footer {
 }
 
 
+/* Add Data*/
+
+.add_data{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    column-gap: 10%;
+    padding-top: 6%;
+}
+
+.add_data img{
+    height: 300px;
+}
+
+.login_redirect{
+    background-color:rgb(30, 80, 180);
+    color: white;
+    user-select: none;
+    border-radius:50px;
+    width:20%;
+    font-size: 100%;
+    transition: 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+.login_redirect:hover{
+    background-color:rgb(10, 40, 100);
+}
+
 /* Form Pages */
 
 .form_div{
@@ -382,7 +401,7 @@ footer {
   } 
 
 
-  .log_flash{
+  .error_flash{
     background-color: rgb(216, 109, 109);
     color: rgb(87, 12, 12);
     border:2px solid rgb(87, 12, 12) ;

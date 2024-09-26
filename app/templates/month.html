@@ -1,33 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>{{month.name}}</h1>
+<h1>{{ month.name }}</h1>
 <hr class="month">
 
 <h2 class="month_sub">Planets</h2>
 <div class="month_container">
-    {%for planet in month.planets%}
+    {% for planet in month.planets %}
     <div>
-        <a href = "/planet/{{planet.id}}">
+        <a href = "/planet/{{ planet.id }}">
             <img class="all_img" src="/static/images/{{ planet.image }}">
             <h3 class="all_name">
-            {{planet.name}}
+            {{ planet.name }}
             </h3>
         </a>
     </div>
-    {%endfor%}
+    {% endfor %}
 </div>
 <br><br><br><br>
 <h2 class="month_sub">Constellations  </h2>
 <div class="month_container">
-    {%for constellation in month.constellations%}
+    {% for constellation in month.constellations %}
     <div>
-        <a href = "/constellation/{{constellation.id}}">
+        <a href = "/constellation/{{ constellation.id }}">
             <img class="all_img" src="/static/images/{{ constellation.image }}">
             <h3 class="all_name">
-            {{constellation.name}}
+            {{ constellation.name }}
             </h3>
         </a>
     </div>
-    {%endfor%}
+    {% endfor %}
 </div>
 {% endblock %}

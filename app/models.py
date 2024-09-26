@@ -3,15 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 ConstellationMonth = db.Table('ConstellationMonth',
-                        db.Column('cid', db.Integer, db.ForeignKey('Constellation.id')),
-                        db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
-                        )
+                              db.Column('cid', db.Integer, db.ForeignKey('Constellation.id')),
+                              db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
+                              )
 
 
 PlanetMonth = db.Table('PlanetMonth',
-                        db.Column('pid', db.Integer, db.ForeignKey('Planet.id')),
-                        db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
-                        )
+                       db.Column('pid', db.Integer, db.ForeignKey('Planet.id')),
+                       db.Column('mid', db.Integer, db.ForeignKey('Month.id')),
+                       )
 
 
 class Month(db.Model):
@@ -19,11 +19,11 @@ class Month(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
     constellations = db.relationship('Constellation',
-                               secondary='ConstellationMonth',
-                               back_populates='months')
+                                     secondary='ConstellationMonth',
+                                     back_populates='months')
     planets = db.relationship('Planet',
-                               secondary='PlanetMonth',
-                               back_populates='months')
+                              secondary='PlanetMonth',
+                              back_populates='months')
 
     def __repr__(self):
         return self.name
@@ -37,8 +37,8 @@ class Constellation(db.Model):
     story = db.Column(db.Text())
     image = db.Column(db.Text())
     months = db.relationship('Month',
-                               secondary='ConstellationMonth',
-                               back_populates='constellations')
+                             secondary='ConstellationMonth',
+                             back_populates='constellations')
 
     def __repr__(self):
         return self.name
@@ -53,8 +53,8 @@ class Planet(db.Model):
     order = db.Column(db.Integer)
     distance = db.Column(db.Text())
     months = db.relationship('Month',
-                               secondary='PlanetMonth',
-                               back_populates='planets')
+                             secondary='PlanetMonth',
+                             back_populates='planets')
 
     def __repr__(self):
         return self.name

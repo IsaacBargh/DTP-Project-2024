@@ -2,13 +2,16 @@
 {% block content %}
 <div class="home_intro">
         <h1>Southern Skies</h1>
-        {%if get_flashed_messages()%}
+
+        {# so flash CSS will only display when there are messages #}
+        {% if get_flashed_messages() %}
         <div class="flash">
-                {%for message in get_flashed_messages()%}
-                        {{message}}
-                {%endfor%}
+                {% for message in get_flashed_messages() %}
+                        {{ message }}
+                {% endfor %}
         </div>
-        {%endif%}
+        {% endif %}
+
         <img class="img" src="/static/images/Nebula.jpg">
         <div class="home_txt">
                 <h2>Welcome</h2>
@@ -35,21 +38,21 @@
         <hr>
 </div>
 <div class="home_month">
-        <h1>{{month}} Sky</h1>
+        <h1>{{ month }} Sky</h1>
         <p>
-                Some of the planets viewable in {{month}} include {{month.planets[0]}}, {{month.planets[1]}} & {{month.planets[2]}}
-                as well as the constellations {{month.constellations[0]}}, {{month.constellations[1]}} & {{month.constellations[2]}}
-                and more seen below and on the {{month}} page.
+                Some of the planets viewable in {{ month }} include {{ month.planets[0] }}, {{ month.planets[1] }} & {{ month.planets[2] }}
+                as well as the constellations {{ month.constellations[0] }}, {{ month.constellations[1] }} & {{ month.constellations[2] }}
+                and more seen below and on the {{ month }} page.
         </p>
         <h2 class="month_sub">Planets</h2>
         <div class="home_container">
-            {%for planet in month.planets%}
-            {%if loop.index <= 5%}
+            {% for planet in month.planets %}
+            {% if loop.index <= 5 %}
             <div>
-                <a href = "/planet/{{planet.id}}">
+                <a href = "/planet/{{ planet.id }}">
                     <img class="all_img" src="/static/images/{{ planet.image }}">
                     <h3 class="all_name">
-                    {{planet.name}}
+                    {{ planet.name }}
                     </h3>
                 </a>
             </div>
@@ -59,18 +62,18 @@
         <br><br><br><br>
         <h2 class="month_sub">Constellations  </h2>
         <div class="home_container">
-            {%for constellation in month.constellations%}
-            {%if loop.index <= 5%}
+            {% for constellation in month.constellations %}
+            {% if loop.index <= 5 %}
             <div>
-                <a href = "/constellation/{{constellation.id}}">
+                <a href = "/constellation/{{ constellation.id }}">
                     <img class="all_img" src="/static/images/{{ constellation.image }}">
                     <h3 class="all_name">
-                    {{constellation.name}}
+                    {{ constellation.name }}
                     </h3>
                 </a>
             </div>
-            {%endif%}
-            {%endfor%}
+            {% endif %}
+            {% endfor %}
         </div>
 </div>
 {% endblock %}

@@ -2,16 +2,15 @@
 {% block content %}
 <br><br>
 <div class="all_link_container">
-    {%for planet in planets%}
+    {% for planet in planets %}
     <div>
-        <a href = "/planet/{{planet.id}}">
+        <a href = "/planet/{{ planet.id }}">
             <img class="all_img" src="/static/images/{{ planet.image }}">
             <h3 class="all_name">
-            {{planet.name}}
+            {{ planet.name }}
             </h3>
         </a>
     </div>
-    {%endfor%}
+    {% endfor %}
 </div>
-<br><br><br><br><br><br><br><br>
 {% endblock %}

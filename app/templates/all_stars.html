@@ -2,15 +2,15 @@
 {% block content %}
 <br><br>
 <div class="all_link_container">
-    {%for star in stars%}
+    {% for star in stars %}
     <div>
-        <a href = "/star/{{star.id}}">
+        <a href = "/star/{{ star.id }}">
             <img class="all_img" src="/static/images/{{ star.image }}">
             <h3 class="all_name">
-            {{star.name}}
+            {{ star.name }}
             </h3>
         </a>
     </div>
-    {%endfor%}
+    {% endfor %}
 </div>
 {% endblock %}

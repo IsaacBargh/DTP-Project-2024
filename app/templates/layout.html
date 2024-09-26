@@ -10,9 +10,12 @@
     
     <nav>
         <a href="/">Home</a>
+        
         <div class="dropdown">
             <button class="dropbtn">Months ▼</button>
             <div class="dropdown-content">
+                {# list rather than for month in months so month data doesn't have to be loaded #}
+                {# in all routes with render template and there are a fixed amount of months #}
                 <a href="/month/1">January</a>
                 <a href="/month/2">February</a>
                 <a href="/month/3">March</a>
@@ -27,17 +30,19 @@
                 <a href="/month/12">December</a>
             </div>
           </div>
+
         <a href="/all_planets">Planets</a>
         <a href="/all_stars">Stars</a>
         <a href="/all_constellations">Constellations</a>
-        {%if person != None%}
-            <a href="/add_data">Add data</a>
-        {%endif%}
-        {% if person != None %}
+        <a href="/add_data">Add data</a>
+
+        {% if person: %}
+        {# only shows Logout when user is signed in #}
             <a href="/clear_user">Logout</a>
         {% else%}
             <a  href="/login">Login</a>
         {% endif %}
+
     </nav>
     <main>
     {%block content%}{%endblock%}

@@ -11,13 +11,16 @@
         <h3>{{ form.password.label }}</h3>
         {{ form.password(placeholder="Password") }}
         <br><br>
-        {%if get_flashed_messages()%}
-        <div class="log_flash">
-        {%for message in get_flashed_messages()%}
-            {{message}}
-        {%endfor%}
+
+        {# so flash CSS will only display when there are messages #}
+        {% if get_flashed_messages() %}
+        <div class="error_flash">
+                {% for message in get_flashed_messages() %}
+                        {{ message }}
+                {% endfor %}
         </div>
-        {%endif%}
+        {% endif %}
+
         {{ form.submit() }}
     </form>
     <p>Don't have an account? <a href="/create_user">Sign up</a></p>
