@@ -412,7 +412,27 @@ footer {
     width: 100%;
 }
 
+/* Login */
 
+.login_title{
+    color: rgb(235, 175, 60);
+    font-weight: 600;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 5%;
+}
+
+.login_title a{
+    color: rgb(30, 80, 180);
+    text-decoration: underline;
+}
+
+.login_title a:hover{
+    color: rgb(10, 40, 100);
+    transition: 0.2s;
+}
+  
   
 /* Error Pages */
 

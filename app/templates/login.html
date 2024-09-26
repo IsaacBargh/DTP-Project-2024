@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
+    <h1 class = "login_title">
+        Login or <a href="/create_user">Sign up</a>
+    </h1>
 <div class = form_div>
-    <h1>Login</h1>
     <form method="POST">
         {{ form.hidden_tag() }}
 
@@ -23,7 +25,5 @@
 
         {{ form.submit() }}
     </form>
-    <p>Don't have an account? <a href="/create_user">Sign up</a></p>
-    {{user}}
 </div>
 {% endblock %}
